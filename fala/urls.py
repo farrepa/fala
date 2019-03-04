@@ -12,3 +12,9 @@ if settings.DEBUG_STATIC:
     urlpatterns += [
         url(r"^static/(?P<path>.*)$", "django.views.static.serve", {"document_root": settings.STATIC_ROOT})
     ]
+
+if settings.DEBUG:
+    from django.views.defaults import server_error
+    urlpatterns += [
+        url(r'^500/$', server_error),
+    ]
